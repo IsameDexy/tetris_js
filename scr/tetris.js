@@ -116,8 +116,27 @@ function drawMatrix(matrix, offset) {
   matrix.forEach((row, yIndex) => {
     row.forEach((value, xIndex) => {
       if (value !== 0) {
+        // Draw rect for each block and fill it with the color from the array
         context.fillStyle = colors[value];
-        context.fillRect(xIndex + offset.x, yIndex + offset.y, 1, 1)
+        context.fillRect(xIndex + offset.x, yIndex + offset.y, 1, 1);
+
+        // lineWidth of the 'shadow' and 'highlight' borderstrokes
+        context.lineWidth = .15;
+        // Draw a line on the left and bottom border to create a 'shadow'
+        context.beginPath();
+        context.moveTo(xIndex + offset.x, yIndex + offset.y);
+        context.lineTo(xIndex + offset.x, yIndex + offset.y + 1);
+        context.lineTo(xIndex + offset.x + 1, yIndex + offset.y + 1);
+        context.strokeStyle = `rgba(0,0,0,0.4)`;
+        context.stroke();
+
+        // Draw a line on the top and right border to create a 'highlight'
+        context.beginPath();
+        context.moveTo(xIndex + offset.x, yIndex + offset.y);
+        context.lineTo(xIndex + offset.x + 1, yIndex + offset.y);
+        context.lineTo(xIndex + offset.x + 1, yIndex + offset.y + 1);
+        context.strokeStyle = `rgba(255,255,255,0.35)`;
+        context.stroke();
       }
     })
   })
