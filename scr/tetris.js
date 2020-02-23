@@ -22,7 +22,7 @@ function arenaSweep() {
     const row = arena.splice(y, 1)[0].fill(0);
     arena.unshift(row);
     ++y; // offset the y because a new row is put `on top` of the arena
-    player.score += rowCount * 10;
+    gameStats.score += rowCount * 10;
     rowCount *= 2;
   }
 }
@@ -59,6 +59,7 @@ function createMatrix(w, h) {
 
 // Function which create the separate pieces
 function createPiece(type) {
+  gameStats.dropInterval = (gameStats.dropInterval >= 200) ? (gameStats.dropInterval -= 2) : 50;
   if (type === 'T') {
     return [
       [0, 0, 0],
@@ -177,8 +178,10 @@ function playerReset() {
   player.pos.y = 0;
   player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
   if (collide(arena, player)) {
+    // The player loses
     arena.forEach(row => row.fill(0));
-    player.score = 0;
+    gameStats.score = 0;
+    gameStats.dropInterval = 1000;
     updateScore();
   }
 }
@@ -212,26 +215,26 @@ function rotate(matrix, dir) {
 }
 
 let dropCounter = 0;
-let dropInterval = 1000;
 
 let lastTime = 0;
 
 // The update is called about ever 16ms and this is calculate by .
-// Add every of the deltatimes together until the dropInterval is reached.
+// Add every of the deltatimes together until the gameStats.dropInterval is reached.
 // Then update the y pos of the player and reset the counter so a new interval can be calculated
 function update(time = 0) {
   const deltaTime = time - lastTime;
   lastTime = time;
   dropCounter += deltaTime;
-  if (dropCounter > dropInterval) {
+  if (dropCounter > gameStats.dropInterval) {
     playerDrop();
   }
   draw();
   requestAnimationFrame(update);
+
 }
 
 function updateScore() {
-  document.getElementById('score').innerText = player.score;
+  document.getElementById('score').innerText = gameStats.score;
 }
 
 document.addEventListener('keydown', event => {
@@ -266,7 +269,12 @@ const arena = createMatrix(12, 20);
 const player = {
   matrix: null,
   pos: { x: 0, y: 0 },
+}
+
+const gameStats = {
   score: 0,
+  createdBlocks: 0,
+  dropInterval: 1000,
 }
 
 // Bootstrap the game

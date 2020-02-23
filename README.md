@@ -3,6 +3,7 @@ This project is based on the tutorial of Meth Meth Method - Write a Tetris game 
 Additional features added to the project:
 * Shadow and highlight borderstrokes for each tetris-block
 * New Color scheme
+* Dropping speed increases after time
 
 ## Run project
 Check out the project and open the index.html in your browser.
