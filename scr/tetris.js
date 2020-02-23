@@ -250,13 +250,13 @@ document.addEventListener('keydown', event => {
 
 const colors = [
   null,
-  'purple',
-  'yellow',
-  'orange',
-  'blue',
-  'aqua',
-  'green',
-  'red',
+  '#cc2a36',
+  '#f2d03a',
+  '#632787',
+  '#0164a6',
+  '#188d88',
+  '#87ac3d',
+  '#f47320',
 ];
 
 // the playfield is 12 blocks wide and 20 high
@@ -277,7 +277,6 @@ update();
 
 // If game is ended, give message with restart button
 // Moeilijkheid erin bouwen => steeds sneller
-// Kleuren aanpassen
-// Borders om blokjes??
 // Next blokje?
 // Highscore naar database?
+// Add comment to functions
