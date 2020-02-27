@@ -4,6 +4,9 @@ Additional features added to the project:
 * Shadow and highlight borderstrokes for each tetris-block
 * New Color scheme
 * Dropping speed increases after time
+* Rendering final-losing block to the arena
+* Game over message
+* Reset button
 
 ## Run project
 Check out the project and open the index.html in your browser.

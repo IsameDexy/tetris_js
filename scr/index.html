@@ -11,16 +11,61 @@
       text-align: center;
     }
 
+    #canvas-wrapper {
+      justify-items: center;
+      width: 100%;
+      display: grid;
+    }
+
     canvas {
       border: solid .2em #fff;
-      height: 60vh;
+      height: 70vh;
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    #score-wrapper {
+      grid-column: 1;
+      grid-row: 1;
+      margin-top: 20vh;
+      z-index: 10;
+      font-size: 4vh;
+      display: none;
+
+    }
+
+    #btn-reset {
+      border: 0.1em solid #FFFFFF;
+      border-radius: 0.5em;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-family: 'Roboto', sans-serif;
+      font-size: 2vh;
+      color: #FFFFFF;
+      height: 4vh;
+      width: 5vw;
+      border: none;
+      background-color: red;
+      margin-top: 3vh;
+    }
+
+    #final-score {
+      margin: 2vh;
     }
   </style>
 </head>
 
 <body>
   <div id="score"></div>
-  <canvas id="tetris" width="240" height="400"></canvas>
+  <div id="canvas-wrapper">
+    <canvas id="tetris" width="240" height="400"></canvas>
+    <div id="score-wrapper">
+      <div id="score-text">Nice score!</br>You're final score is:</div>
+      <div id="final-score"></div>
+      <button id="btn-reset" onclick="handleResetClick()">Reset</button>
+    </div>
+  </div>
+
   <script src="tetris.js"></script>
 </body>
 
